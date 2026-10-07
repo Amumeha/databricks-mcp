@@ -1,0 +1,9 @@
+mcp<2
+databricks-sdk
+databricks-sql-connector
+truststore
+python-dotenv
+whoosh
+rank_bm25
+pyyaml
+openai
