@@ -1,0 +1,17 @@
+command:
+  - python
+  - app.py
+
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: DATABRICKS_VOLUME_PATH
+    valueFrom: volume
+  - name: DATABRICKS_DELTA_TABLE
+    valueFrom: table
+  - name: LLM_ENDPOINT
+    valueFrom: model
+  - name: DATABRICKS_HOST
+    value: "https://dbc-7cdb25c9-bf58.cloud.databricks.com"
+  - name: DATABRICKS_TOKEN
+    valueFrom: pat_token
