@@ -1,8 +1,8 @@
 from openai import OpenAI
+from databricks.sdk.core import Config
 
 from config import (
     DATABRICKS_HOST,
-    DATABRICKS_TOKEN,
     LLM_ENDPOINT,
 )
 
@@ -13,12 +13,17 @@ def _llm_client() -> OpenAI:
     Databricks Model Serving endpoint.
     """
 
+    auth_header = Config(host=DATABRICKS_HOST).authenticate()[
+        "Authorization"
+    ]
+    access_token = auth_header.removeprefix("Bearer ")
+
     return OpenAI(
         base_url=(
             f"{DATABRICKS_HOST.rstrip('/')}"
             "/serving-endpoints"
         ),
-        api_key=DATABRICKS_TOKEN,
+        api_key=access_token,
     )
 
 

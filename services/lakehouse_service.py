@@ -1,10 +1,10 @@
 from typing import Any
 
 from databricks import sql
+from databricks.sdk.core import Config
 
 from config import (
     DATABRICKS_HOST,
-    DATABRICKS_TOKEN,
     DATABRICKS_WAREHOUSE_ID,
     DELTA_TABLE,
 )
@@ -21,6 +21,7 @@ def _get_connection():
         .replace("http://", "")
         .rstrip("/")
     )
+    config = Config(host=DATABRICKS_HOST)
 
     return sql.connect(
         server_hostname=hostname,
@@ -28,7 +29,7 @@ def _get_connection():
             f"/sql/1.0/warehouses/"
             f"{DATABRICKS_WAREHOUSE_ID}"
         ),
-        access_token=DATABRICKS_TOKEN,
+        credentials_provider=lambda: config.authenticate,
     )
 
 

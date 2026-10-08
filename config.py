@@ -17,7 +17,6 @@ from databricks.sdk import WorkspaceClient
 # ============================================================
 
 DATABRICKS_HOST = os.getenv("DATABRICKS_HOST")
-DATABRICKS_TOKEN = os.getenv("DATABRICKS_TOKEN")
 DATABRICKS_WAREHOUSE_ID = os.getenv("DATABRICKS_WAREHOUSE_ID")
 
 if not DATABRICKS_HOST:
@@ -31,15 +30,9 @@ if not DATABRICKS_WAREHOUSE_ID:
     )
 
 
-if DATABRICKS_TOKEN:
-    workspace_client = WorkspaceClient(
-        host=DATABRICKS_HOST,
-        token=DATABRICKS_TOKEN,
-    )
-else:
-    workspace_client = WorkspaceClient(
-        host=DATABRICKS_HOST,
-    )
+workspace_client = WorkspaceClient(
+    host=DATABRICKS_HOST,
+)
 
 
 # ============================================================

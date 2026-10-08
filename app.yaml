@@ -13,5 +13,3 @@ env:
     valueFrom: model
   - name: DATABRICKS_HOST
     value: "https://dbc-7cdb25c9-bf58.cloud.databricks.com"
-  - name: DATABRICKS_TOKEN
-    valueFrom: pat_token
