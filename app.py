@@ -54,10 +54,17 @@ def ask(
 #   )
 
 if __name__ == "__main__":
+    import uvicorn
+
     host = "0.0.0.0"
-    port = int(os.getenv("DATABRICKS_APP_PORT", os.getenv("PORT", "8000")))
-    mcp.run(
-        transport="streamable-http",
+    port = int(
+        os.getenv("DATABRICKS_APP_PORT")
+        or os.getenv("PORT")
+        or "8000"
+    )
+
+    uvicorn.run(
+        mcp.streamable_http_app(),
         host=host,
-        port=port
+        port=port,
     )
